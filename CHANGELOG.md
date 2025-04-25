@@ -7,12 +7,63 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added `VADUserStartedSpeakingFrame` and `VADUserStoppedSpeakingFrame`,
+  indicating when the VAD detected the user to start and stop speaking. These
+  events are helpful when using smart turn detection, as the user's stop time
+  can differ from when their turn ends (signified by UserStoppedSpeakingFrame).
+
+- Added `TranslationFrame`, a new frame type that contains a translated
+  transcription.
+
+- Added `TransportParams.audio_in_passthrough`. If set (the default), incoming
+  audio will be pushed downstream.
+
+- Added `MCPClient`; a way to connect to MCP servers and use the MCP servers'
+  tools.
+
+### Changed
+
+- Updated `GladiaSTTService` to output a `TranslationFrame` when specifying a
+  `translation` and `translation_config`.
+
+- STT services now passthrough audio frames by default. This allows you to add
+  audio recording without worrying about what's wrong in your pipeline when it
+  doesn't work the first time.
+
+- Input transports now always push audio downstream unless disabled with
+  `TransportParams.audio_in_passthrough`. After many Pipecat releases, we
+  realized this is the common use case. There are use cases where the input
+  transport already provides STT and you also don't want recordings, in which
+  case there's no need to push audio to the rest of the pipeline, but this is
+  not a very common case.
+
+### Deprecated
+
+- `TransportParams.camera_*` parameters are now deprecated, use
+  `TransportParams.video_*` instead.
+
+- `TransportParams.vad_enabled` parameter is now deprecated, use
+  `TransportParams.audio_in_enabled` and `TransportParams.vad_analyzer` instead.
+
+- `TransportParams.vad_audio_passthrough` parameter is now deprecated, use
+  `TransportParams.audio_in_passthrough` instead.
+
 ### Fixed
 
 - Fixed an issue where the `SmartTurnMetricsData` was reporting 0ms for
   inference and processing time when using the `FalSmartTurnAnalyzer`.
 
-## [0.0.65] - 2025-04-23 "Sant Jordi's release"
+### Other
+
+- Added 04 foundational examples for client/server transports. Also, renamed
+  `29-livekit-audio-chat.py` to `04b-transports-livekit.py`.
+
+- Added foundational example `13c-gladia-translation.py` showing how to use
+  `TranscriptionFrame` and `TranslationFrame`.
+
+## [0.0.65] - 2025-04-23 "Sant Jordi's release" 🌹📕
 
 https://en.wikipedia.org/wiki/Saint_George%27s_Day_in_Catalonia
 

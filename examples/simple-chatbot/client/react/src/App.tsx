@@ -7,6 +7,14 @@ import { RTVIProvider } from './providers/RTVIProvider';
 import { ConnectButton } from './components/ConnectButton';
 import { StatusDisplay } from './components/StatusDisplay';
 import { DebugDisplay } from './components/DebugDisplay';
+// newly added imports
+import { TranscriptDisplay } from './components/TranscriptDisplay'; // ✅ Already present
+import './components/TranscriptDisplay.css'; // ✅ Already present
+
+// ✅ Newly added imports below
+import { RecordingDisplay } from './components/RecordingDisplay';
+import './components/RecordingDisplay.css';
+
 import './App.css';
 
 function BotVideo() {
@@ -32,9 +40,11 @@ function AppContent() {
 
       <div className="main-content">
         <BotVideo />
+        <TranscriptDisplay />
       </div>
 
       <DebugDisplay />
+      <RecordingDisplay /> {/* ✅ Added here exactly as requested */}
       <RTVIClientAudio />
     </div>
   );

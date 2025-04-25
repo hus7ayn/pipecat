@@ -1,0 +1,12 @@
+.recording-panel {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e3f2fd;
+    border-radius: 8px;
+  }
+  
+  .recording-panel audio {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
